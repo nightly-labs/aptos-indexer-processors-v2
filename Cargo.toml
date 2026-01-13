@@ -11,8 +11,8 @@ edition = "2021"
 homepage = "https://aptoslabs.com"
 license = "Apache-2.0"
 publish = false
-repository = "https://github.com/aptos-labs/aptos-indexer-processors-v2"
-# This needs to match aptos-core's version to run the processors in the CLI. 
+repository = "https://github.com/nightly-labs/aptos-indexer-processors-v2"
+# This needs to match neony's version to run the processors in the CLI. 
 rust-version = "1.78"
 
 [workspace.dependencies]
@@ -23,19 +23,19 @@ allocative_derive = "0.3.3"
 anyhow = "1.0.98"
 # Do NOT enable the postgres_full feature here, it is conditionally enabled in a feature
 # block in the Cargo.toml file for the processor crate.
-# https://github.com/aptos-labs/aptos-indexer-processors/pull/325
+# https://github.com/nightly-labs/aptos-indexer-processors/pull/325
 # Do NOT enable the testing_framework feature here, it is conditionally enabled as a dev dependency
 # in the integration-tests/Cargo.toml file.
-aptos-indexer-processor-sdk = { git = "https://github.com/aptos-labs/aptos-indexer-processor-sdk.git", tag = "aptos-indexer-processor-sdk-v2.1.2", features = [
+aptos-indexer-processor-sdk = { git = "https://github.com/nightly-labs/aptos-indexer-processor-sdk.git", rev = "078e46195a47a1ba6de92a501cc3a430fee2870a", features = [
     "postgres_partial",
 ] }
-aptos-indexer-test-transactions = { git = "https://github.com/aptos-labs/aptos-core.git", rev = "797f47b4cbf99391bb90a87a0e817f098a65fc08" }
+aptos-indexer-test-transactions = { git = "https://github.com/nightly-labs/neony.git", rev = "0e225c7b3d7272150cc31a63ecce2d52315017e0" }
 assert-json-diff = "2.0.2"
 async-trait = "0.1.53"
 backtrace = "0.3.58"
 base64 = "0.13.0"
 bb8 = "0.8.1"
-bcs = { git = "https://github.com/aptos-labs/bcs.git", rev = "d31fab9d81748e2594be5cd5cdf845786a30562d" }
+bcs = { git = "https://github.com/nightly-labs/bcs.git", rev = "d31fab9d81748e2594be5cd5cdf845786a30562d" }
 bigdecimal = { version = "0.4.0", features = ["serde"] }
 bitflags = "2.5.0"
 canonical_json = "0.5.0"
@@ -44,16 +44,14 @@ clap = { version = "4.3.5", features = ["derive", "unstable-styles"] }
 const_format = "0.2.33"
 # Do NOT enable the postgres feature here, it is conditionally enabled in a feature
 # block in the Cargo.toml file for the processor crate.
-# https://github.com/aptos-labs/aptos-indexer-processors/pull/325
-diesel = { version = "=2.2.0", features = [
+# https://github.com/nightly-labs/aptos-indexer-processors/pull/325
+diesel = { version = "~2.3", features = [
     "chrono",
     "postgres_backend",
     "numeric",
     "serde_json",
 ] }
-# Use the crate version once this feature gets released on crates.io:
-# https://github.com/weiznich/diesel_async/commit/e165e8c96a6c540ebde2d6d7c52df5c5620a4bf1
-diesel-async = { git = "https://github.com/weiznich/diesel_async.git", rev = "e3beac66cd41ab53d78a10328bb72f272103e5d1", features = [
+diesel-async = { version = "0.7.4", features = [
     "async-connection-wrapper",
     "postgres",
     "bb8",
@@ -100,7 +98,7 @@ processor = { path = "processor" }
 prometheus = { version = "0.13.3", default-features = false }
 prost = { version = "0.13.4", features = ["no-recursion-limit"] }
 prost-types = "0.13.4"
-# Keep it compatible with the aptos-core version.
+# Keep it compatible with the neony version.
 rayon = "1.5.2"
 regex = "1.5.5"
 reqwest = { version = "0.11.20", features = [
